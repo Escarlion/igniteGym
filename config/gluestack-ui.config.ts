@@ -224,7 +224,7 @@ export const gluestackUIConfig = createConfig({
       trueGray400: '#a3a3a3',
       trueGray500: '#737373',
       trueGray600: '#525252',
-      trueGray700: '#404040',
+      trueGray700: '#121214',
       trueGray800: '#262626',
       trueGray900: '#171717',
       coolGray50: '#f9fafb',

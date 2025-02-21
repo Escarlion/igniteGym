@@ -8,8 +8,8 @@ import {
 import { config } from "./config/gluestack-ui.config";
 import { Center, GluestackUIProvider, Text } from "@gluestack-ui/themed";
 
-import { Loading } from "@components/Loading/loading";
-import { SignIn } from "@screens/SignIn";
+import { Routes } from "@routes/index";
+import { Loading } from "@components/loading";
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_700Bold, Roboto_400Regular });
@@ -17,7 +17,7 @@ export default function App() {
   return (
     <GluestackUIProvider config={config}>
       
-      {fontsLoaded ? <SignIn /> : <Loading />}
+      {fontsLoaded ? <Routes /> : <Loading />}
 
       <StatusBar
         barStyle="light-content"

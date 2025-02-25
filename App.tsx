@@ -6,11 +6,10 @@ import {
 } from "@expo-google-fonts/roboto";
 
 import { config } from "./config/gluestack-ui.config";
-import { Center, GluestackUIProvider, Text } from "@gluestack-ui/themed";
+import { GluestackUIProvider, } from "@gluestack-ui/themed";
 
 import { Routes } from "@routes/index";
-import { Loading } from "@components/loading";
-
+import { Loading } from "@components/Loading";
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_700Bold, Roboto_400Regular });
 

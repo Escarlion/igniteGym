@@ -11,7 +11,6 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { useNavigation } from "@react-navigation/native";
-import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import BackgroundImg from "@assets/background.png";
@@ -35,7 +34,10 @@ const signUpSchema = yup.object({
     .string()
     .required("Informe a senha")
     .min(6, "A senha deve ter pelo menos 6 digitos"),
-  password_confirm: yup.string().required("Confirme a senha").oneOf([yup.ref("password"), ""], "Senha incorreta"),
+  password_confirm: yup
+    .string()
+    .required("Confirme a senha")
+    .oneOf([yup.ref("password"), ""], "Senha incorreta"),
 });
 
 export function SignUp() {
@@ -53,9 +55,27 @@ export function SignUp() {
     navigation.goBack();
   }
 
-  function handleSignUp(data: FormDataProps) {
-    console.log({ data });
+  async function handleSignUp({ name, email, password }: FormDataProps) {
+    //define o endereço do servidor e o que será acessado
+    //Acessa o metodo Post e passa os dados no padrão JSON
+    const response = await fetch("http://192.168.3.10:3333/users", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        email,
+        password,
+      }),
+    });
+
+    //Transform a resposta do servidor em json e exibe
+    const data = await response.json();
+    console.log(data);
   }
+
   return (
     <ScrollView
       contentContainerStyle={{ flexGrow: 1 }}

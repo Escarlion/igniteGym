@@ -6,22 +6,25 @@ import { Box } from "@gluestack-ui/themed";
 import { useAuth } from "@hooks/useAuth";
 
 import { AuthRoutes } from "./auth.routes";
-import { useContext } from "react";
+import { AppRoutes } from "./app.routes";
+import { Loading } from "@components/Loading";
 
 export function Routes() {
 
-  const { user } = useAuth();
+  const { user, isLoadingUserStorageData } = useAuth();
   
   const theme = DefaultTheme;
   //define uma cor de fundo padrão
   theme.colors.background = gluestackUIConfig.tokens.colors.trueGray900;
 
-  console.log("User: ", user)
+  if(isLoadingUserStorageData){
+    return <Loading />
+  }
 
   return (
     <Box flex={1} bg="$gray700">
       <NavigationContainer theme={theme}>
-        <AuthRoutes />
+        { user.id ? <AppRoutes /> : <AuthRoutes />}
       </NavigationContainer>
     </Box>
   );

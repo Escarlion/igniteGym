@@ -22,12 +22,16 @@ import { Controller, useForm } from "react-hook-form";
 import { AppError } from "@utils/AppError";
 import { ToastMessage } from "@components/ToastMessage";
 
+import { useState } from "react";
+
 type FormData = {
   email: string;
   password: string;
 };
 
 export function SignIn() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const { signIn } = useAuth();
   const toast = useToast();
 
@@ -45,6 +49,7 @@ export function SignIn() {
 
   async function handleSignIn({ email, password }: FormData) {
     try {
+      setIsLoading(true);
       await signIn(email, password);
     } catch (error) {
       const isAppError = error instanceof AppError;
@@ -53,6 +58,8 @@ export function SignIn() {
         ? error.message
         : "Não foi possivel entrar. Tente novamente mais tarde";
 
+      setIsLoading(false);
+
       return toast.show({
         placement: "top",
         render: ({ id }) => (
@@ -60,7 +67,7 @@ export function SignIn() {
             id={id}
             action="error"
             title={title}
-            description=''
+            description=""
             onClose={() => toast.close(id)}
           />
         ),
@@ -120,7 +127,11 @@ export function SignIn() {
                 />
               )}
             />
-            <Button title="Acessar" onPress={handleSubmit(handleSignIn)} />
+            <Button
+              title="Acessar"
+              onPress={handleSubmit(handleSignIn)}
+              isLoading={isLoading}
+            />
           </Center>
 
           <Center flex={1} justifyContent="flex-end" mt="$4">

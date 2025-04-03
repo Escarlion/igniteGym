@@ -21,7 +21,7 @@ export function HomeHeader() {
           Olá,
         </Text>
         <Heading color="$gray100" fontSize="$md">
-          {user.name}
+          { user.name ? user.name : "Anon"}
         </Heading>
       </VStack>
       <TouchableOpacity onPress={signOut}>

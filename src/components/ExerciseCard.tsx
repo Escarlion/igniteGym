@@ -19,7 +19,7 @@ export function ExerciseCard({ ...rest }: Props) {
         mb="$3"
       >
         <Image
-          source={{ uri: "https://i.redd.it/4ajm8xvg20w61.jpg" }}
+          source={{ uri: "https://i.pinimg.com/736x/70/66/39/7066394ab09e7aa7f5d592c970d5bec3.jpg" }}
           alt="Imagem do exercicio"
           w="$16"
           h="$16"
@@ -30,7 +30,7 @@ export function ExerciseCard({ ...rest }: Props) {
 
         <VStack flex={1}>
           <Heading fontSize="$lg" color="$white" fontFamily="$heading">
-            Bizarre adventures
+            Levantamento Lateral
           </Heading>
           <Text
             fontSize="$sm"
@@ -39,7 +39,7 @@ export function ExerciseCard({ ...rest }: Props) {
             mt="$1"
             numberOfLines={2}
           >
-            5 temporadas
+            5 séries
           </Text>
         </VStack>
 
